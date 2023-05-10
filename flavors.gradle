@@ -1,0 +1,35 @@
+ext.flavorConfig = {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "default"
+
+    signingConfigs{
+        demotest {
+            storeFile file("demo.jks")
+            storePassword "abc-1234"
+            keyAlias "softifybd"
+            keyPassword "abc-1234"
+        }
+    }
+
+    productFlavors{
+        demoTest {
+            versionNameSuffix "-demo3"
+            dimension "default"
+            applicationId "com.example.demo"
+            versionCode project.verCode
+            versionName project.verName
+            signingConfig signingConfigs.demotest
+            buildConfigField "String", "TYPE", '"paid"'
+        }
+    }
+}
